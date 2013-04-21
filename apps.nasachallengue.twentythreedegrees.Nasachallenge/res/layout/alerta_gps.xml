@@ -6,21 +6,20 @@
     android:background="@drawable/aviso_gps"
     android:orientation="vertical"
     tools:context=".GPSTracker" >
-
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_weight="7"
+        android:layout_weight="6"
         android:gravity="bottom" >
-
+
         <ImageButton
-            android:id="@+id/btnconfig"
+            android:id="@+id/btnConfig"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
-            android:background="@drawable/config"
-            android:src="@android:drawable/btn_star" />
+            android:layout_gravity="bottom|right"
+            android:background="@drawable/config" />
 
         <ImageButton
             android:id="@+id/btnExit"

@@ -78,7 +78,7 @@ public class SplashScreen extends Activity implements OnClickListener
 	{
 		switch (v.getId())
 		{
-			case R.id.btnconfig:
+			case R.id.btnConfig:
 			
 			break;
 

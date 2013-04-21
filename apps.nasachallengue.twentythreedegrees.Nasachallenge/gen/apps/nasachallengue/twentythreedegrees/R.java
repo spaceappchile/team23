@@ -14,27 +14,32 @@ public final class R {
         public static final int aviso_gps=0x7f020000;
         public static final int back1=0x7f020001;
         public static final int back2=0x7f020002;
-        public static final int camara=0x7f020003;
-        public static final int config=0x7f020004;
-        public static final int cortinilla=0x7f020005;
-        public static final int exit=0x7f020006;
-        public static final int fondo=0x7f020007;
-        public static final int ic_launcher=0x7f020008;
-        public static final int instrucciones_trans=0x7f020009;
+        public static final int baja=0x7f020003;
+        public static final int camara=0x7f020004;
+        public static final int config=0x7f020005;
+        public static final int cortinilla=0x7f020006;
+        public static final int exit=0x7f020007;
+        public static final int fondo=0x7f020008;
+        public static final int foto_error=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int instrucciones_trans=0x7f02000b;
+        public static final int selecciona=0x7f02000c;
+        public static final int slecciona_2=0x7f02000d;
     }
     public static final class id {
+        public static final int btnConfig=0x7f070003;
         public static final int btnExit=0x7f070004;
-        public static final int btnconfig=0x7f070003;
-        public static final int imgCuerpo=0x7f070007;
+        public static final int imgCuerpo=0x7f070008;
         public static final int imgExplicacion=0x7f070002;
         public static final int imgFoto=0x7f070001;
         public static final int imgFotoEspacio=0x7f070000;
-        public static final int imgSplash=0x7f07000a;
-        public static final int lstVista=0x7f070006;
-        public static final int menu_settings=0x7f07000b;
-        public static final int spnTipo=0x7f070005;
-        public static final int txtCuerpo=0x7f070008;
-        public static final int txtInformacion=0x7f070009;
+        public static final int imgSplash=0x7f07000b;
+        public static final int imgTituloBuscar=0x7f070005;
+        public static final int lstVista=0x7f070007;
+        public static final int menu_settings=0x7f07000c;
+        public static final int spnTipo=0x7f070006;
+        public static final int txtCuerpo=0x7f070009;
+        public static final int txtInformacion=0x7f07000a;
     }
     public static final class layout {
         public static final int activity_nasachallenge=0x7f030000;

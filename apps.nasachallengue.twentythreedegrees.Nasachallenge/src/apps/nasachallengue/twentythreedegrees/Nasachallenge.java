@@ -63,7 +63,7 @@ public class Nasachallenge extends Activity implements OnClickListener
 		ancho = display.getWidth();
 		alto = display.getHeight();
 		
-		bmExplicacion = Bitmap.createScaledBitmap(bmExplicacion, (ancho*40)/100, (alto*50)/100, true);
+		bmExplicacion = Bitmap.createScaledBitmap(bmExplicacion, (ancho*48)/100, (alto*50)/100, true);
 		bmBuscar = Bitmap.createScaledBitmap(bmBuscar, (ancho*27)/100, (alto*15)/100, true);
 		bmCamara = Bitmap.createScaledBitmap(bmCamara, (ancho*30)/100, (alto*20)/100, true);
 		

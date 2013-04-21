@@ -190,7 +190,7 @@ public class GPSTracker extends Service implements LocationListener {
     	dia.setCancelable(false);
     	dia.setContentView(R.layout.alerta_gps);
     	dia.show();
-    	ImageButton btnConfig= (ImageButton)dia.findViewById(R.id.btnconfig);
+    	ImageButton btnConfig= (ImageButton)dia.findViewById(R.id.btnConfig);
     	btnConfig.setOnClickListener(new OnClickListener()
     	{
 			

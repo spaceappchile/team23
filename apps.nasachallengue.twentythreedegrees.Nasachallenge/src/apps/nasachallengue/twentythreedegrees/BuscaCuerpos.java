@@ -3,10 +3,14 @@ package apps.nasachallengue.twentythreedegrees;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -16,6 +20,8 @@ public class BuscaCuerpos extends Activity implements OnItemSelectedListener, On
 	
 	Spinner spnType;
 	ListView lstVistas;
+	ImageView imgTitulo;
+	Bitmap bmTitulo;
 	String [] space_objects = new String []{"Asteroids", "Comets", "Planetary Satellites", "Planets"};
 	String [] asteroides = new String []{"Asclepius", "1988 XB"};
 	String [] cometas = new String []{"Orpheus", "1982 XB"};
@@ -30,6 +36,19 @@ public class BuscaCuerpos extends Activity implements OnItemSelectedListener, On
         setContentView(R.layout.buscar_cuerpo);
         spnType = (Spinner) findViewById(R.id.spnTipo);
         lstVistas = (ListView) findViewById(R.id.lstVista);
+        imgTitulo = (ImageView) findViewById(R.id.imgTituloBuscar);
+        
+        Display display = getWindowManager().getDefaultDisplay();
+		
+        bmTitulo = BitmapFactory.decodeResource(getResources(), R.drawable.selecciona);
+
+		int ancho = display.getWidth();
+		int alto = display.getHeight();
+		
+		bmTitulo = Bitmap.createScaledBitmap(bmTitulo, (ancho*100)/100, (alto*10)/100, true);
+		
+		imgTitulo.setImageBitmap(bmTitulo);
+        
         ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, space_objects);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		

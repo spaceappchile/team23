@@ -45,7 +45,7 @@ public class ImagenCuerpoBuscado extends Activity
         setContentView(R.layout.cuerpo_buscado);
 
 		Bundle bundle = getIntent().getExtras();
-        //nomCuerpo = bundle.getString("CuerpoCeleste");
+        nomCuerpo = bundle.getString("CuerpoCeleste");
 		inicializarElementos();
 		enviarDatosServidor();
 		puente();
@@ -94,10 +94,10 @@ public class ImagenCuerpoBuscado extends Activity
 		try
 		{
 		     HttpClient httpclient = new DefaultHttpClient();
-		     //HttpGet httppost = new HttpGet(url+"?latitud="+lat+"&longitud="+log+"&altitud"+alt);
-		     //HttpResponse response = httpclient.execute(httppost);
-		     //HttpEntity entity = response.getEntity();
-		     //is = entity.getContent();
+		     HttpGet httppost = new HttpGet(url+"?cuerpo="+nomCuerpo);//CAMBIAR PARAMETRO!!!!!
+		     HttpResponse response = httpclient.execute(httppost);
+		     HttpEntity entity = response.getEntity();
+		     is = entity.getContent();
 		}
 		catch(Exception e)
 		{
@@ -122,7 +122,7 @@ public class ImagenCuerpoBuscado extends Activity
 		catch(Exception e)
 		{
 			Log.e("logLectura", "Error converting result "+e.toString());
-			return "Hubo un problema";
+			return "Hubo un problema";//URL ERROR! getBitmapFromURL("http://softtouch.com.co/img/lo%20sentimos.jpg")
 		}
 		
 	}
@@ -137,6 +137,7 @@ public class ImagenCuerpoBuscado extends Activity
             conn.connect();
             loadedImage = BitmapFactory.decodeStream(conn.getInputStream());
             imgFotoGps.setImageBitmap(loadedImage);
+            txtInfo.setText("Image: "+nomCuerpo);
         } catch (IOException e)
         {
             Toast.makeText(getApplicationContext(), "Error cargando la imagen: "+e.getMessage(), Toast.LENGTH_LONG).show();
@@ -149,7 +150,7 @@ public class ImagenCuerpoBuscado extends Activity
 	{
 		imgFotoGps = (ImageView)findViewById(R.id.imgCuerpo);
 		txtInfo = (TextView)findViewById(R.id.txtCuerpo);
-		
+		txtInfo.setText("");
 	}
 
     

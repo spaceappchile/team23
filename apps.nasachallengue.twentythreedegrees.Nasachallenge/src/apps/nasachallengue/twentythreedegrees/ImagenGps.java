@@ -78,7 +78,8 @@ public class ImagenGps extends Activity
 		        public void handleMessage(Message msg) 
 		        {
 		        	Drawable imagen = (Drawable)msg.obj;		        	
-		        	imgFotoGps.setImageDrawable(imagen); 
+		        	imgFotoGps.setImageDrawable(imagen);
+		        	txtInfo.setText("This image correspond to the coordinates "+lat +" "+log);
 		        	dialog.dismiss();
 		        	/*String mensaje =(String)msg.obj;
 		        	txtInfo.setText(mensaje);
@@ -104,12 +105,10 @@ public class ImagenGps extends Activity
 	}
 	private Drawable obtenerImagen(String url)
 	{
-		 
 		InputStream is = null;
-		StringBuilder sb=null;
+		StringBuilder sb =null;
 		String result = null;
 
-		
 		//Coneccion a la pagina
 		try
 		{
@@ -121,7 +120,8 @@ public class ImagenGps extends Activity
 		}
 		catch(Exception e)
 		{
-			Log.e("log_tag", "Error in http connection"+e.toString());
+			Log.e("log_tag", "Error in http connection!!"+e.toString());
+			
 		}
 		try
 		{
@@ -173,6 +173,7 @@ public class ImagenGps extends Activity
 	{
 		imgFotoGps = (ImageView)findViewById(R.id.imgFotoEspacio);
 		txtInfo = (TextView)findViewById(R.id.txtInformacion);
+		txtInfo.setText("");
 		
 	}
 }
