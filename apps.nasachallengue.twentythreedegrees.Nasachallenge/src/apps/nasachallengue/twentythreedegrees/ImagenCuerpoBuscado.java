@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.apache.http.HttpEntity;
@@ -21,6 +22,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,7 +38,7 @@ public class ImagenCuerpoBuscado extends Activity
 	private String resultado;
 	private Handler puente;
 	private Bitmap loadedImage;
-	private String url;
+	private String url="http://23deg.cityhero.es/api/getAsteriode";
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -47,15 +49,12 @@ public class ImagenCuerpoBuscado extends Activity
 		Bundle bundle = getIntent().getExtras();
         nomCuerpo = bundle.getString("CuerpoCeleste");
 		inicializarElementos();
-		enviarDatosServidor();
 		puente();
+		dialog = ProgressDialog.show(this, "", "Search...", false);
+		hiloBuscar();
     }
 
-    private void enviarDatosServidor()
-	{
-		
-	}
-    
+   
 	private void puente() 
 	{
 		puente = new Handler() 
@@ -63,9 +62,9 @@ public class ImagenCuerpoBuscado extends Activity
 	        @Override
 	        public void handleMessage(Message msg) 
 	        {
-	        	String mensaje = (String)msg.obj;
+	        	Drawable mensaje = (Drawable)msg.obj;
 	        	dialog.dismiss();
-	        	finish();
+	        	imgFotoGps.setImageDrawable(mensaje);
 	        }
 	    };	
 	}
@@ -85,7 +84,7 @@ public class ImagenCuerpoBuscado extends Activity
 	         thread.start();		
 	}
 	
-	private String obtenerImagen(String url)
+	private Drawable obtenerImagen(String url)
 	{
 		InputStream is = null;
 		StringBuilder sb=null;
@@ -116,34 +115,31 @@ public class ImagenCuerpoBuscado extends Activity
 		    }  
 		    is.close();
 		    result=sb.toString();
-		    String [] latlong = result.split("/");
-		   	return  obtenerImagenUrl(url);
+		    String [] nomFoto = result.split("\"");
+		    return  obtenerImagenUrl("http://skyview.gsfc.nasa.gov/tempspace/fits/"+nomFoto[3]+".jpg");
 		} 
 		catch(Exception e)
 		{
 			Log.e("logLectura", "Error converting result "+e.toString());
-			return "Hubo un problema";//URL ERROR! getBitmapFromURL("http://softtouch.com.co/img/lo%20sentimos.jpg")
+			return obtenerImagenUrl("http://softtouch.com.co/img/lo%20sentimos.jpg");//URL ERROR! getBitmapFromURL("http://softtouch.com.co/img/lo%20sentimos.jpg")
 		}
 		
 	}
 	
-	private String obtenerImagenUrl(String url)
+	private Drawable obtenerImagenUrl(String url)
 	{
-		URL imageUrl = null;
-        try 
-        {
-            imageUrl = new URL(url);
-            HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
-            conn.connect();
-            loadedImage = BitmapFactory.decodeStream(conn.getInputStream());
-            imgFotoGps.setImageBitmap(loadedImage);
-            txtInfo.setText("Image: "+nomCuerpo);
-        } catch (IOException e)
-        {
-            Toast.makeText(getApplicationContext(), "Error cargando la imagen: "+e.getMessage(), Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-        }
-		return "aceptado";
+		 Drawable imagen=null;
+		 try {
+			imagen =  Drawable.createFromStream((InputStream)new URL(url).getContent(), "src");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			//imagen =  Drawable.createFromStream((InputStream)new URL("http://softtouch.com.co/img/lo%20sentimos.jpg").getContent(), "src");
+			e.printStackTrace();
+		}
+		
+		return imagen;
 	}
 	
 	private void inicializarElementos()

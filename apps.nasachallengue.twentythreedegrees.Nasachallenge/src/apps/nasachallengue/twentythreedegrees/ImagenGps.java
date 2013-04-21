@@ -66,7 +66,7 @@ public class ImagenGps extends Activity
         alt = bundle.getDouble("altitudGPS",0);
 		inicializarElementos();
 		puente();
-		dialog = ProgressDialog.show(this, "", "Search...", true);
+		dialog = ProgressDialog.show(this, "", "Search...", false);
 		hiloBuscar();
 		
 	}
